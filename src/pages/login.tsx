@@ -1,6 +1,7 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { UserCircleIcon } from "@heroicons/react/16/solid";
+import { useRouter } from "next/router";
 import { useState } from "react";
 
 export default function Login() {
@@ -8,6 +9,13 @@ export default function Login() {
     email: null,
     senha: null,
   });
+
+  const router = useRouter();
+
+  function handleNavigation(): void {
+    router.push("/Home");
+  }
+
   return (
     <div className="flex flex-col h-screen w-screen justify-center items-center">
       <div className="bg-white w-[450px] h-[600px] absolute rounded-3xl flex flex-col items-center p-7 shadow-custom-dark">
@@ -19,7 +27,7 @@ export default function Login() {
         </div>
 
         <div className="w-full mt-10 flex flex-col gap-7">
-          <Button label="Login" className="bg-green hover:bg-green-more-dark" />
+          <Button label="Login" className="bg-green hover:bg-green-more-dark" onClick={handleNavigation} />
           <Button label="Cadastre-se" className="bg-green hover:bg-green-more-dark" />
         </div>
       </div>

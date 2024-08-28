@@ -1,11 +1,26 @@
+import Button from "@/components/Button";
+import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+
 export default function Home() {
   return (
     <div className="w-full h-full flex justify-center items-center">
       <div className="w-[1100px] h-[600px] rounded-4xl relative shadow-custom-dark bg-green overflow-hidden flex ">
         <div className=" flex justify-center w-[40%] p-10 text-2xl">
-          <div>
-            O intuito dessa plataforma é trabalhar em cima do data set do satélite Sentinel-2 do projeto Copernicus da
-            (ESA), com finalidade de calcular o NDVI de plantações, facilitando o dia a dia do produtor rural brasileiro
+          <div className="flex flex-col ">
+            <span>
+              O intuito dessa plataforma é trabalhar em cima do data set do satélite Sentinel-2 do projeto Copernicus da
+              (ESA), com finalidade de calcular o NDVI de plantações, facilitando o dia a dia do produtor rural
+              brasileiro
+            </span>
+            <div className="w-full flex justify-center items-center h-full">
+              <Button
+                className=" w-auto h-auto text-white bg-black font-semibold hover:bg-white hover:text-black text-3xl active:bg-white focus:outline-none 
+                focus:ring-2 focus:ring-gray-300"
+              >
+                {"Buscar Imagem"}
+                {<MagnifyingGlassIcon className="size-10" />}
+              </Button>
+            </div>
           </div>
         </div>
         <div className="w-[60%] h-full flex justify-end ">
