@@ -13,7 +13,7 @@ export default function Login() {
   const router = useRouter();
 
   function handleNavigation(): void {
-    router.push("/Home");
+    router.push("/home");
   }
 
   return (
@@ -27,8 +27,10 @@ export default function Login() {
         </div>
 
         <div className="w-full mt-10 flex flex-col gap-7">
-          <Button label="Login" className="bg-green hover:bg-green-more-dark" onClick={handleNavigation} />
-          <Button label="Cadastre-se" className="bg-green hover:bg-green-more-dark" />
+          <Button className="bg-green hover:bg-green-more-dark font-medium" onClick={handleNavigation}>
+            Login
+          </Button>
+          <Button className="bg-green hover:bg-green-more-dark font-medium">Cadastre-se</Button>
         </div>
       </div>
       <div className="w-screen h-1/3 flex justify-center items-center bg-black"></div>

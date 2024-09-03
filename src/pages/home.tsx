@@ -18,7 +18,7 @@ export default function Home() {
                 focus:ring-2 focus:ring-gray-300"
               >
                 {"Buscar Imagem"}
-                {<MagnifyingGlassIcon className="size-10" />}
+                {<MagnifyingGlassIcon className="size-8" />}
               </Button>
             </div>
           </div>
