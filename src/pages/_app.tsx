@@ -10,7 +10,7 @@ const font = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
-  const isLoginPage = router.pathname === "/login";
+  const isLoginPage = router.pathname === "/login" || "/usuario/cadastro";
 
   return (
     <div className={font.className}>
