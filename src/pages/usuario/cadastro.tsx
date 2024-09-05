@@ -1,6 +1,10 @@
 import Button from "@/components/Button";
 import Input from "@/components/Input";
+import Image from "next/image";
 import { useState } from "react";
+import logo from "../../../public/assets/logo.png";
+import service from "@/services/usuario";
+import { useRouter } from "next/router";
 
 interface User {
   nome: string;
@@ -17,17 +21,49 @@ export default function Usuario() {
     confirmaSenha: "",
   });
 
+  function limpaForm() {
+    setFormData({ nome: "", email: "", senha: "", confirmaSenha: "" });
+  }
+
+  const router = useRouter();
+
+  function verificaSenha(formData: any): boolean {
+    if (formData.senha != "" && formData.confirmaSenha != "") {
+      const senha: string = formData.senha;
+      const confirmaSenha: string = formData.confirmaSenha;
+      return senha === confirmaSenha;
+    }
+    return false;
+  }
+
+  async function handleCriaUsuario() {
+    try {
+      if (verificaSenha(formData)) {
+        console.log("deu certo");
+        await service.adicionarUsuario(formData);
+        limpaForm();
+        router.push("/login");
+      }
+      console.log("nao ta certo");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div className="flex flex-col h-screen w-screen justify-center items-center">
-      <div className="bg-white w-[400px] h-[600px] absolute rounded-3xl flex items-center flex-col p-7 shadow-custom-dark text-black">
-        <h1 className="text-3xl">Cadastro</h1>
-        <div className="mt-16 flex flex-col gap-5">
+      <div className="bg-black w-[400px] h-[600px] absolute rounded-3xl flex items-center flex-col p-7 shadow-custom-dark">
+        <Image src={logo} alt="logo" className="size-14" />
+        <h1 className="text-3xl mt-5">Cadastro</h1>
+        <div className="mt-10 flex flex-col gap-5 w-full">
           <Input placeHolder="Nome" value={formData.nome} id="nome" setFormData={setFormData} />
-          <Input type="email" placeHolder="E-mail" value={formData.email} id="email" setFormData={setFormData} />
-          <Input placeHolder="Senha" value={formData.senha} id="senha" setFormData={setFormData} />
-          <Input placeHolder="Confirmar Senha" value={formData.confirmaSenha} id="confirmaSenha" setFormData={setFormData} />
+          <Input autocomplete="off" type="email" placeHolder="E-mail" value={formData.email} id="email" setFormData={setFormData} />
+          <Input autocomplete="off" type="password" placeHolder="Senha" value={formData.senha} id="senha" setFormData={setFormData} />
+          <Input type="password" placeHolder="Confirmar Senha" value={formData.confirmaSenha} id="confirmaSenha" setFormData={setFormData} />
         </div>
-        <Button className="text-white mt-28 h-12 w-40 text-xl hover:text-lg">Confirmar</Button>
+        <Button className="text-white mt-16 h-12 w-40 text-xl hover:text-lg bg-green" onClick={handleCriaUsuario}>
+          Confirmar
+        </Button>
       </div>
       <div className="w-screen h-1/3 flex justify-center items-center bg-black"></div>
       <div className="w-screen h-2/3 flex justify-center items-center bg-green"></div>

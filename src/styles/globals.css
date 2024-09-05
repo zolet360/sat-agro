@@ -18,11 +18,17 @@
 
 body {
   color: gainsboro;
-  background: rgb(219, 219, 219);
+  background: #1e1e1e;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px theme("colors.soft-black") inset;
+    -webkit-text-fill-color: theme("colors.white");
   }
 }

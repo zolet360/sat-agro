@@ -14,6 +14,9 @@ const config: Config = {
         "green-more-dark": "#385533",
         black: "#1E1E1E",
         "soft-black": "#2e2e2e",
+        "light-black": "#4e4e4e",
+        "light-soft-black": "#6e6e6e",
+        "soft-gray": "#9e9e9e",
         white: "gainsboro",
       },
       borderRadius: {

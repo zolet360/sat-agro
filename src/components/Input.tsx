@@ -18,8 +18,8 @@ export default function Input({ label, value, id, className, type, setFormData, 
 
   return (
     <div className={`flex flex-col ${className}`}>
-      <label className="text-gray-300 font-semibold">{label}</label>
-      <input className="px-3 py-2 rounded-lg  outline-none bg-soft-black " type={type} value={value} id={id} name={id} {...props} onChange={handleChange} />
+      <label className="text-soft-gray font-semibold">{label}</label>
+      <input className="px-3 py-2 rounded-lg border border-light-black outline-none bg-soft-black placeholder:text-light-soft-black" type={type} value={value} id={id} name={id} {...props} onChange={handleChange} />
     </div>
   );
 }
