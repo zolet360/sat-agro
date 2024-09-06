@@ -31,4 +31,33 @@ body {
     -webkit-box-shadow: 0 0 0px 1000px theme("colors.soft-black") inset;
     -webkit-text-fill-color: theme("colors.white");
   }
+
+  /* Sobrescrevendo a classe base do toast */
+  .Toastify__toast {
+    background-color: #1e293b !important; /* Cor de fundo */
+    color: white !important; /* Cor do texto */
+    border-radius: 8px !important; /* Bordas arredondadas */
+    font-size: 16px !important; /* Tamanho da fonte */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3) !important; /* Sombra */
+  }
+
+  /* Sucesso */
+  .Toastify__toast--success {
+    background-color: #22c55e !important; /* Cor de fundo de sucesso */
+  }
+
+  /* Erro */
+  .Toastify__toast--error {
+    background-color: #ef4444 !important; /* Cor de fundo de erro */
+  }
+
+  /* Informação */
+  .Toastify__toast--info {
+    background-color: #3b82f6 !important; /* Cor de fundo de informação */
+  }
+
+  /* Aviso */
+  .Toastify__toast--warning {
+    background-color: #f59e0b !important; /* Cor de fundo de aviso */
+  }
 }

@@ -6,6 +6,7 @@ import type { AppProps } from "next/app";
 import { Poppins } from "next/font/google";
 import { useEffect, useState } from "react";
 import service from "@/services/usuario";
+import { ToastContainer } from "react-toastify";
 
 const font = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800", "900"] });
 
@@ -20,14 +21,8 @@ export default function App({ Component, pageProps }: AppProps) {
     try {
       const response = await service.me();
       console.log(response.data);
-      const userGuadado = localStorage.getItem("user");
-      console.log(user);
-      if (userGuadado) {
-        setUser(JSON.parse(userGuadado));
-      } else {
-        localStorage.setItem("user", JSON.stringify(response.data));
-        setUser(response.data);
-      }
+      localStorage.setItem("user", JSON.stringify(response.data));
+      setUser(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -47,6 +42,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <div className={!isLoginPage ? "ps-[300px] pt-16 w-screen h-screen" : "w-screen h-screen"}>
         <Component {...pageProps} setHeaderTitle={setHeaderTitle} user={user} />
       </div>
+      <ToastContainer />
     </div>
   );
 }

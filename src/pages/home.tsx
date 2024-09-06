@@ -14,7 +14,7 @@ export default function Home({ setHeaderTitle }: HomeProps) {
 
   return (
     <div className="w-full h-full flex justify-center overflow-auto">
-      <div className="fixed w-full h-full -z-10 rotate-180 blur-xl" style={{ backgroundImage: "url(assets/foto3.jpeg)", backgroundSize: "cover" }}></div>
+      <div className="fixed w-full h-full -z-10 rotate-180 blur-sm" style={{ backgroundImage: "url(assets/foto3.jpeg)", backgroundSize: "cover" }}></div>
       <div className=" flex justify-center w-[40%] p-10 text-2xl overflow-auto">
         <div className="flex flex-col">
           <span className=" bg-black shadow-custom-dark p-5 rounded-4xl mb-10 mt-28">

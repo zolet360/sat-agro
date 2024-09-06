@@ -26,9 +26,17 @@ async function login(data: any) {
   return request;
 }
 
+async function editaUsuario(id: number, data: any) {
+  const request = await api.put(`${URLBASE}/${id}`, {
+    nome: data.nome,
+    email: data.email,
+  });
+  return request;
+}
+
 async function me() {
   const request = await api.get(`${URLBASE}/me`);
   return request;
 }
 
-export default { adicionarUsuario, login, me };
+export default { adicionarUsuario, login, me, editaUsuario };
