@@ -1,5 +1,6 @@
 import Button from "@/components/Button";
 import { MagnifyingGlassIcon } from "@heroicons/react/16/solid";
+import { useRouter } from "next/router";
 
 import { useEffect } from "react";
 
@@ -11,6 +12,8 @@ export default function Home({ setHeaderTitle }: HomeProps) {
   useEffect(() => {
     setHeaderTitle("Home"); // Atualiza o título do Header para "Home" quando a página é montada
   }, [setHeaderTitle]);
+
+  const router = useRouter();
 
   return (
     <div className="w-full h-full flex justify-center overflow-auto">
@@ -24,6 +27,7 @@ export default function Home({ setHeaderTitle }: HomeProps) {
             <Button
               className=" w-auto h-auto text-white bg-black  hover:bg-white hover:text-black text-2xl active:bg-white focus:outline-none 
                 focus:ring-2 focus:ring-gray-300"
+              onClick={() => router.push("imagens/busca")}
             >
               {"Buscar Imagem"}
               {<MagnifyingGlassIcon className="size-8" />}
