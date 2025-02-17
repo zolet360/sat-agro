@@ -20,7 +20,7 @@ export default function Home({ setHeaderTitle }: HomeProps) {
       <div className="fixed w-full h-full -z-10 rotate-180 blur-sm" style={{ backgroundImage: "url(assets/foto3.jpeg)", backgroundSize: "cover" }}></div>
       <div className=" flex justify-center w-[40%] p-10 text-2xl overflow-auto">
         <div className="flex flex-col">
-          <span className=" bg-black shadow-custom-dark p-5 rounded-4xl mb-10 mt-28">
+          <span className=" bg-black shadow-custom-darker p-5 rounded-4xl mb-10 mt-28">
             O intuito dessa plataforma é trabalhar em cima do data set do satélite Sentinel-2 do projeto Copernicus da (ESA), com finalidade de calcular o NDVI de plantações, facilitando o dia a dia do produtor rural brasileiro.
           </span>
           <div className=" flex justify-center mt-10">
@@ -36,7 +36,7 @@ export default function Home({ setHeaderTitle }: HomeProps) {
         </div>
       </div>
       <div className="w-[50%]  h-full flex justify-end  overflow-hidden">
-        <img src="assets/foto2.jpg" className="w-[1200px] h-[1100px] object-cover rounded-full fixed right-[-18%] shadow-custom-dark top-1/2 transform -translate-y-1/2 " />
+        <img src="assets/foto2.jpg" className="w-[1200px] h-[1100px] object-cover rounded-full fixed right-[-18%] shadow-custom-darkest top-1/2 transform -translate-y-1/2 " />
       </div>
     </div>
   );

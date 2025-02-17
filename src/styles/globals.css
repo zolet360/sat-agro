@@ -60,4 +60,44 @@ body {
   .Toastify__toast--warning {
     background-color: #f59e0b !important; /* Cor de fundo de aviso */
   }
+
+  @keyframes modalIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes modalOut {
+    0% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+  }
+
+  @layer components {
+    .modal-content {
+      @apply opacity-0 scale-90;
+    }
+
+    .modal-overlay {
+      background: transparent !important; /* Remove o fundo */
+    }
+
+    .ReactModal__Overlay--after-open .modal-content {
+      animation: modalIn 0.3s ease-out forwards;
+    }
+
+    .ReactModal__Overlay--before-close .modal-content {
+      animation: modalOut 0.3s ease-in forwards;
+    }
+  }
 }

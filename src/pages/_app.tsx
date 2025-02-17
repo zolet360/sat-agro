@@ -20,7 +20,6 @@ export default function App({ Component, pageProps }: AppProps) {
   async function buscaUserLogado() {
     try {
       const response = await service.me();
-      console.log(response.data);
       localStorage.setItem("user", JSON.stringify(response.data));
       setUser(response.data);
     } catch (error) {
@@ -29,14 +28,13 @@ export default function App({ Component, pageProps }: AppProps) {
   }
 
   useEffect(() => {
-    console.log(isLoginPage);
     if (!isLoginPage) {
       buscaUserLogado();
     }
   }, [router.pathname]);
 
   return (
-    <div className={font.className}>
+    <div id="root" className={font.className}>
       {!isLoginPage && <Header title={headerTitle} user={user} />}
       {!isLoginPage && <SideBar title={headerTitle} user={user} />}
       <div className={!isLoginPage ? "ps-[300px] pt-16 w-screen h-screen" : "w-screen h-screen"}>

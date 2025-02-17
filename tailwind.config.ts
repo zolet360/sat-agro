@@ -8,6 +8,20 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      animation: {
+        modalIn: "modalIn 0.3s ease-out forwards",
+        modalOut: "modalOut 0.3s ease-in forwards",
+      },
+      keyframes: {
+        modalIn: {
+          "0%": { opacity: "0", transform: "scale(0.9)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
+        },
+        modalOut: {
+          "0%": { opacity: "1", transform: "scale(1)" },
+          "100%": { opacity: "0", transform: "scale(0.9)" },
+        },
+      },
       colors: {
         green: "#55894D",
         "green-dark": "#52824b",

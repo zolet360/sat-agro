@@ -2,20 +2,25 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import { useEffect, useState } from "react";
 import service from "@/services/imagem";
+import parametroService from "@/services/parametro";
 import ImageDiv from "@/components/ImageDiv";
+import { Autocomplete } from "@/components/Autocomplete";
+import { showToast } from "@/components/toast";
 
 interface buscaImagemProps {
+  user: any;
   setHeaderTitle: (title: string) => void;
 }
 
-export default function BuscaImagem({ setHeaderTitle }: buscaImagemProps) {
-  useEffect(() => {
-    setHeaderTitle("Buscar Imagens");
-  }, [setHeaderTitle]);
-
+export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) {
+  const [formUser, setFormUser] = useState(user);
   const [imagem, setImagem] = useState<any>(null);
   const [ndvi, setNdvi] = useState<any>(null);
   const [loading, setLoading] = useState<any>(null);
+
+  const [formData, setFormData] = useState({
+    parametro: { label: "", value: "" },
+  });
 
   const [formCoordenadas, setFormCoordenadas] = useState({
     coordenada1: "",
@@ -33,9 +38,19 @@ export default function BuscaImagem({ setHeaderTitle }: buscaImagemProps) {
     lon3: "",
     lat4: "",
     lon4: "",
-    inicio: "",
-    fim: "",
+    inicio: null,
+    fim: null,
   });
+
+  useEffect(() => {
+    setHeaderTitle("Buscar Imagens");
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const parsedUser = JSON.parse(storedUser);
+      setFormUser(parsedUser);
+    }
+    console.log(formUser);
+  }, [setHeaderTitle]);
 
   function splitString(input: string) {
     if (!input.includes(",")) return [input.trim(), ""];
@@ -58,17 +73,16 @@ export default function BuscaImagem({ setHeaderTitle }: buscaImagemProps) {
   }
 
   async function buscarImagens() {
-    console.log(formBusca);
     try {
       await transformaCoordenadas();
       setLoading(true);
       const response = await service.buscarImagem(formBusca);
-      console.log(response);
       setImagem(response.object.url);
       setNdvi(response.object.ndviValue);
       setLoading(false);
     } catch (error) {
       console.log("erro: " + error);
+      showToast("Porra", "error");
       setLoading(false);
     }
   }
@@ -78,10 +92,41 @@ export default function BuscaImagem({ setHeaderTitle }: buscaImagemProps) {
     setNdvi(null);
   }
 
+  async function importarParametro() {
+    try {
+      if (formData.parametro.value === "") return;
+      const response = await parametroService.buscaPorId(formData.parametro.value, formUser.id);
+      setFormCoordenadas({
+        coordenada1: response.coordenada1,
+        coordenada2: response.coordenada2,
+        coordenada3: response.coordenada3,
+        coordenada4: response.coordenada4,
+      });
+      formBusca.inicio = response.inicio;
+      formBusca.fim = response.fim;
+      console.log(response);
+    } catch (error) {}
+  }
+
   return (
     <div className="p-10 flex justify-center items-center">
       <div className="w-[1400px] bg-black h-[700px] rounded-4xl border flex  gap-10 border-light-soft-black p-7">
-        <div className=" flex flex-col gap-10 w-1/2 items-center">
+        <div className=" flex flex-col gap-5 w-1/2 items-center">
+          <div className="flex gap-5 w-full">
+            <Autocomplete
+              class_name="w-[70%]"
+              label="Importar Parametros"
+              setFormData={setFormData}
+              placeholder="Importar Parametros Salvos"
+              user_id={formUser.id}
+              id="parametro"
+              url="parametro/autocomplete"
+              value={formData.parametro}
+            ></Autocomplete>
+            <Button onClick={importarParametro} className=" text-blue-600 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-blue-600 h-10 mt-5 font-semibold hover:text-white">
+              Importar
+            </Button>
+          </div>
           <div className="flex gap-5 w-full">
             <Input className="w-full" id="coordenada1" value={formCoordenadas.coordenada1} setFormData={setFormCoordenadas} label="Coordenada 1"></Input>
           </div>
@@ -108,8 +153,8 @@ export default function BuscaImagem({ setHeaderTitle }: buscaImagemProps) {
             <>
               <p className="text-white text-xl mt-5">NDVI: {ndvi ? ndvi.toFixed(2) : ""}</p>
               <div className="flex gap-4 mt-7">
-                <Button className="bg-blue-500 text-xl hover:bg-blue-700 w-1/2 h-12 rounded-4xl ">Salvar</Button>
-                <Button onClick={descartarImagem} className="bg-red-600 text-xl hover:bg-red-800 w-1/2 h-12 rounded-4xl ">
+                <Button className="text-blue-500 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-blue-500 font-semibold hover:text-white">Salvar</Button>
+                <Button className="text-red-600 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-red-600 font-semibold hover:text-white" onClick={descartarImagem}>
                   Descartar
                 </Button>
               </div>
