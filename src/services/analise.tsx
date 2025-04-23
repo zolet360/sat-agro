@@ -8,4 +8,10 @@ async function adicionarAnalise(data: any) {
   return request;
 }
 
-export default { adicionarAnalise };
+async function imagens(id: any, page: number) {
+  console.log(id);
+  const response = await api.get(`${URLBASE}/${id}/${page || 1}`);
+  return response.data;
+}
+
+export default { adicionarAnalise, imagens };

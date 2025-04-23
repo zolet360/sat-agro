@@ -9,3 +9,12 @@ export function formatarDataComTracos(date: Date): string {
 
   return `${ano}-${mes}-${dia} ${hora}:${minuto}:${segundo}`;
 }
+
+export const formatData = (timestamp: string): string => {
+  const date = new Date(timestamp);
+  return new Intl.DateTimeFormat("pt-BR", {
+    dateStyle: "short",
+    timeStyle: "short",
+    timeZone: "America/Sao_Paulo",
+  }).format(date);
+};

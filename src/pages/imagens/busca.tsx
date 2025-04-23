@@ -9,6 +9,8 @@ import { showToast } from "@/components/toast";
 import CustomModal from "@/components/Modal";
 import { formatarDataComTracos } from "@/utils/mask";
 import serviceAnalise from "@/services/analise";
+import { CheckIcon, XMarkIcon } from "@heroicons/react/16/solid";
+import { ArrowPathRoundedSquareIcon } from "@heroicons/react/24/outline";
 
 interface buscaImagemProps {
   user: any;
@@ -23,6 +25,11 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
   const [data, setData] = useState<any>(null);
   const [openModal, setOpenModal] = useState(false);
   const today = new Date();
+  const [normalImage, setNormalImage] = useState(false);
+  const [imagens, setimagens] = useState<any>({});
+
+  const infravermelho = "text-green outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-green font-semibold hover:text-white";
+  const normal = "text-yellow-600 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-yellow-600 font-semibold hover:text-white";
 
   const [formData, setFormData] = useState({
     parametro: { label: null, value: null },
@@ -117,7 +124,11 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
       await transformaCoordenadas();
       setLoading(true);
       const response = await service.buscarImagem(formBusca);
-      setImagem(response.object.url);
+      setImagem(response.object.urlNdvi);
+      setimagens({
+        ndvi: response.object.urlNdvi,
+        normal: response.object.url,
+      });
       setNdvi(response.object.ndviValue);
       setData(response.object.dateCaptured);
       setLoading(false);
@@ -131,6 +142,7 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
   function descartarImagem() {
     setImagem(null);
     setNdvi(null);
+    setimagens({});
   }
 
   async function importarParametro() {
@@ -187,6 +199,14 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
     } catch (error) {
       console.log(error);
     }
+  }
+
+  function mudarImagem() {
+    setNormalImage((prev) => {
+      const novoValor = !prev;
+      setImagem(novoValor ? imagens.normal : imagens.ndvi);
+      return novoValor;
+    });
   }
 
   return (
@@ -259,7 +279,23 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
             <ImageDiv image={imagem} loading={loading}></ImageDiv>
             {imagem && (
               <>
-                <p className="text-white text-xl mt-5">NDVI: {ndvi ? ndvi.toFixed(2) : ""}</p>
+                <div className="flex gap-5">
+                  <p className="text-white text-xl mt-5">NDVI: {ndvi ? ndvi.toFixed(2) : ""}</p>
+                  <Button className={(normalImage ? normal : infravermelho) + " h-8 mt-4"} onClick={() => mudarImagem()}>
+                    {normalImage ? (
+                      <div className="flex gap-2 items-center">
+                        Imagem Normal
+                        <ArrowPathRoundedSquareIcon className="w-7 h-7" aria-hidden="true" />
+                      </div>
+                    ) : (
+                      <div className="flex gap-2 items-center">
+                        imagem Infravermelha
+                        <ArrowPathRoundedSquareIcon className="w-7 h-7" aria-hidden="true" />
+                      </div>
+                    )}
+                  </Button>
+                </div>
+
                 <div className="flex gap-4 mt-7">
                   <Button onClick={openModalSalvarImagem} className="text-blue-500 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-blue-500 font-semibold hover:text-white">
                     Salvar

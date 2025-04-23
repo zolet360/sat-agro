@@ -15,7 +15,7 @@ export default function Navigation() {
           </div>
         </li>
         <li className=" border-b p-2 border-white hover:scale-110 transition-transform duration-300">
-          <div className=" flex justify-center cursor-pointer space-x-3 ">
+          <div onClick={() => router.push("/suas-imagens/lista")} className=" flex justify-center cursor-pointer space-x-3 ">
             <div className="w-1/3 flex justify-center">
               <PhotoIcon width={25} height={25} />
             </div>
