@@ -36,12 +36,7 @@ const ImagemFirebase = ({ path, userId }: ImagemFirebaseProps) => {
       {/* Modal */}
       {aberta && url && (
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50" onClick={() => setAberta(false)}>
-          <img
-            src={url}
-            alt="Imagem grande"
-            className="max-w-[90%] max-h-[90%] rounded-xl shadow-lg"
-            onClick={(e) => e.stopPropagation()} // pra não fechar ao clicar na imagem
-          />
+          <img src={url} alt="Imagem grande" className="min-w-[500px] min-h-[400px] max-w-[90%] max-h-[90%] object-contain border border-white shadow-custom-darkest" onClick={(e) => e.stopPropagation()} />
         </div>
       )}
     </>
