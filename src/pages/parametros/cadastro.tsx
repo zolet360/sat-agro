@@ -36,7 +36,7 @@ export default function Parametros({ user, setHeaderTitle, formData, setFormData
     <>
       <div className="w-full h-full flex items-center  justify-center">
         <div className="bg-black w-[1200px] h-[700px] rounded-4xl shadow-custom-dark pl-10 pr-10 pb-10 pt-5 flex flex-col gap-5">
-          <h1 className="text-2xl font-semibold ">{formData.id ? "Editar Parâmetro" : "Novo Parâmetro"}</h1>
+          <h1 className="text-2xl font-semibold ">{formData?.id ? "Editar Parâmetro" : "Novo Parâmetro"}</h1>
 
           <FormParametros formData={formData} setFormData={setFormData} />
         </div>
