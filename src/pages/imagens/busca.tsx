@@ -134,7 +134,7 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
       setLoading(false);
     } catch (error) {
       console.log("erro: " + error);
-      showToast("Porra", "error");
+      showToast("Não foi possivel encontrar imagens tente outra data, ou outras coordenadas", "error");
       setLoading(false);
     }
   }

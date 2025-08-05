@@ -1,9 +1,9 @@
 export const firebaseConfig = {
-  apiKey: "AIzaSyAxHs3LvuUHE9wjODeM68J7CBjvhT8pKrA",
-  authDomain: "sat-agro-7d375.firebaseapp.com",
-  projectId: "sat-agro-7d375",
-  storageBucket: "sat-agro-7d375.firebasestorage.app",
-  messagingSenderId: "648496362200",
-  appId: "1:648496362200:web:8529d00dc6482e1b1a9dad",
-  measurementId: "G-727DN5EB66",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
