@@ -13,7 +13,7 @@ export default function FormParametros({ formData, setFormData }: FormParametros
         <Input className="w-full" id="descricao" value={formData?.descricao} setFormData={setFormData} label="Nome do Parâmetro" required={true}></Input>
       </div>
       <div className="flex gap-5 w-full">
-        <Input className="w-full" id="coordenada1" placeholder="Ex: -23.586945253991747, -46.68877650651415" value={formData.coordenada1} setFormData={setFormData} label="Coordenada 1" required={true}></Input>
+        <Input className="w-full" id="coordenada1" placeholder="Ex: -23.586945253991747, -46.68877650651415" value={formData?.coordenada1} setFormData={setFormData} label="Coordenada 1" required={true}></Input>
       </div>
       <div className="flex gap-5 w-full">
         <Input className="w-full" id="coordenada2" value={formData?.coordenada2} setFormData={setFormData} label="Coordenada 2" required={true}></Input>
