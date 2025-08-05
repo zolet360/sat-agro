@@ -99,7 +99,8 @@ export const Autocomplete: React.FC<AutocompleteProps> = ({ setFormData, id, val
       />
       <input type="hidden" value={value?.label ?? ""} />
 
-      {results?.length > 0 &&
+      {Array.isArray(results) &&
+        results.length > 0 &&
         ReactDOM.createPortal(
           <div
             className="absolute z-50 w-full"
