@@ -148,7 +148,7 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
   async function importarParametro() {
     try {
       if (formData.parametro.value === "") return;
-      const response = await parametroService.buscaPorId(formData.parametro.value, formUser.id);
+      const response = await parametroService.buscaPorId(formData?.parametro?.value, formUser.id);
       setFormCoordenadas({
         coordenada1: response.coordenada1,
         coordenada2: response.coordenada2,
@@ -219,10 +219,10 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
         size="lg"
         buttons={
           <>
-            <Button type={"buttom"} onClick={cancelModal} className="text-red-600 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-red-600 font-semibold hover:text-white">
+            <Button type={"button"} onClick={cancelModal} className="text-red-600 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-red-600 font-semibold hover:text-white">
               voltar
             </Button>
-            <Button type={"buttom"} onClick={salvarImagem} className="text-green outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-green font-semibold hover:text-white">
+            <Button type={"button"} onClick={salvarImagem} className="text-green outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-green font-semibold hover:text-white">
               Confirmar
             </Button>
           </>

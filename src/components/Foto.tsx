@@ -16,10 +16,10 @@ const Foto = ({ id, formData, setFormData }: FotoProps) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviewUrl(reader.result);
+        setPreviewUrl(reader.result as string);
         setFormData((prevFormData) => ({
           ...prevFormData,
-          [name]: reader.result.split(",")[1],
+          [name]: typeof reader.result === "string" ? reader.result.split(",")[1] : "",
         }));
       };
       reader.readAsDataURL(file);

@@ -56,10 +56,10 @@ export default function Usuario() {
         <Image src={logo} alt="logo" className="size-14" />
         <h1 className="text-3xl mt-5">Cadastro</h1>
         <div className="mt-10 flex flex-col gap-5 w-full">
-          <Input placeHolder="Nome" value={formData.nome} id="nome" setFormData={setFormData} />
-          <Input autocomplete="off" type="email" placeHolder="E-mail" value={formData.email} id="email" setFormData={setFormData} />
-          <Input autocomplete="off" type="password" placeHolder="Senha" value={formData.senha} id="senha" setFormData={setFormData} />
-          <Input type="password" placeHolder="Confirmar Senha" value={formData.confirmaSenha} id="confirmaSenha" setFormData={setFormData} />
+          <Input placeholder="Nome" value={formData.nome} id="nome" setFormData={setFormData} />
+          <Input autoComplete="off" type="email" placeholder="E-mail" value={formData.email} id="email" setFormData={setFormData} />
+          <Input autoComplete="off" type="password" placeholder="Senha" value={formData.senha} id="senha" setFormData={setFormData} />
+          <Input type="password" placeholder="Confirmar Senha" value={formData.confirmaSenha} id="confirmaSenha" setFormData={setFormData} />
         </div>
         <Button className="text-white mt-16 h-12 w-40 text-xl hover:text-lg bg-green" onClick={handleCriaUsuario}>
           Confirmar

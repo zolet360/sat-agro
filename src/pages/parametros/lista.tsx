@@ -116,7 +116,7 @@ export default function Parametros({ user, setHeaderTitle }: ParametrosProps) {
         size="lg"
         buttons={
           <>
-            <Button type={"buttom"} onClick={cancelModal} className="text-red-600 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-red-600 font-semibold hover:text-white">
+            <Button type="button" onClick={cancelModal} className="text-red-600 outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-red-600 font-semibold hover:text-white">
               voltar
             </Button>
             <Button type={"submit"} className="text-green outline hover:shadow-custom-dark outlin hover:outline-none hover:bg-green font-semibold hover:text-white">

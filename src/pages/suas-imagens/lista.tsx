@@ -1,14 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import FormParametros from "./form-parametros";
-import Button from "@/components/Button";
 import service from "@/services/analise";
-import { PencilIcon, XMarkIcon } from "@heroicons/react/16/solid";
-import CustomModal from "@/components/Modal";
-import { showToast } from "@/components/toast";
 import { formatData } from "@/utils/mask";
-import { getDownloadURL, ref } from "firebase/storage";
-import { storage } from "../../firebase";
 import ImagemFirebase from "@/components/ImagemFirebase";
 
 interface SuasImagensProps {
