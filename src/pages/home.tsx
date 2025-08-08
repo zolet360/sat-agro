@@ -10,7 +10,7 @@ type HomeProps = {
 
 export default function Home({ setHeaderTitle }: HomeProps) {
   useEffect(() => {
-    setHeaderTitle("Home"); // Atualiza o título do Header para "Home" quando a página é montada
+    setHeaderTitle("Home");
   }, [setHeaderTitle]);
 
   const router = useRouter();

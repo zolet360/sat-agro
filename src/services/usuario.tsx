@@ -8,7 +8,6 @@ async function usuarios(data: any) {
 }
 
 async function adicionarUsuario(data: any) {
-  console.log(data);
   const request = await api.post(URLBASE, {
     nome: data.nome,
     email: data.email,

@@ -39,12 +39,10 @@ export default function Usuario() {
   async function handleCriaUsuario() {
     try {
       if (verificaSenha(formData)) {
-        console.log("deu certo");
         await service.adicionarUsuario(formData);
         limpaForm();
         router.push("/login");
       }
-      console.log("nao ta certo");
     } catch (error) {
       console.log(error);
     }

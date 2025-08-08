@@ -22,7 +22,6 @@ export default function Login() {
   async function handleLogin() {
     try {
       const response = await service.login(formData);
-      console.log(response.data.token);
       localStorage.setItem("token", response.data.token);
       router.push("/home");
     } catch (error) {
