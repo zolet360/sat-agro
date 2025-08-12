@@ -6,6 +6,8 @@ import { useState } from "react";
 import logo from "../../public/assets/logo.png";
 import Image from "next/image";
 import service from "@/services/usuario";
+import Loading from "@/components/Loading";
+import { showToast } from "@/components/toast";
 
 export default function Login() {
   const [formData, setFormData] = useState({
@@ -15,20 +17,38 @@ export default function Login() {
 
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
+
   function handleNavigation(route: string): void {
     router.push(route);
   }
 
   async function handleLogin() {
     try {
+      setLoading(true);
       const response = await service.login(formData);
       localStorage.setItem("token", response.data.token);
       router.push("/home");
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      showToast("Algo deu errado! Confira seu e-mail e senha", "error");
       console.log(error);
     }
   }
+  if (loading) {
+    return (
+      <div className="flex flex-col h-screen w-screen justify-center items-center">
+        <div className="bg-black w-[400px] h-[550px] absolute rounded-3xl flex flex-col items-center p-7 shadow-custom-dark">
+          <Image src={logo} alt="logo" className=" text-green w-40 h-40" />
 
+          <Loading />
+        </div>
+        <div className="w-screen h-1/3 flex justify-center items-center bg-black"></div>
+        <div className="w-screen h-2/3 flex justify-center items-center bg-green"></div>
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col h-screen w-screen justify-center items-center">
       <div className="bg-black w-[400px] h-[550px] absolute rounded-3xl flex flex-col items-center p-7 shadow-custom-dark">
