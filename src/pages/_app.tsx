@@ -24,6 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
       setUser(response.data);
     } catch (error) {
       console.log(error);
+      router.push("/login");
     }
   }
 

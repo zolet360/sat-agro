@@ -1,4 +1,4 @@
-import { AdjustmentsHorizontalIcon, ChartBarIcon, EyeIcon, HomeIcon, PhotoIcon } from "@heroicons/react/16/solid";
+import { AdjustmentsHorizontalIcon, ChartBarIcon, EyeIcon, HomeIcon, MagnifyingGlassIcon, PhotoIcon } from "@heroicons/react/16/solid";
 import { useRouter } from "next/router";
 
 export default function Navigation() {
@@ -23,11 +23,11 @@ export default function Navigation() {
           </div>
         </li>
         <li className=" border-b p-2 border-white hover:scale-105 transition-transform duration-300">
-          <div className=" flex justify-center cursor-pointer space-x-3">
+          <div onClick={() => router.push("/imagens/busca")} className=" flex justify-center cursor-pointer space-x-3">
             <div className="w-1/3 flex justify-center">
-              <ChartBarIcon width={25} height={25} />
+              <MagnifyingGlassIcon width={25} height={25} />
             </div>
-            <div className="w-2/3">Analise NDVI</div>
+            <div className="w-2/3">Buscar Imagens</div>
           </div>
         </li>
         <li className=" border-b p-2 border-white hover:scale-110 transition-transform duration-300">

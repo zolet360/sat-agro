@@ -48,8 +48,14 @@ export default function Parametros({ user, setHeaderTitle }: SuasImagensProps) {
   return (
     <>
       <div className="w-full h-full flex items-center  justify-center">
-        <div className="bg-black w-[1200px] min-h-[700px] rounded-4xl shadow-custom-dark pl-10 pr-10 pb-10 pt-5 flex flex-col gap-5">
+        <div className="bg-black w-[1200px] min-h-[700px] rounded-4xl border border-light-soft-black pl-10 pr-10 pb-10 pt-5 flex flex-col gap-5">
           <h1 className="text-2xl font-semibold ">{"Lista de Imagens"}</h1>
+
+          {data.length === 0 && (
+            <div className="flex items-center justify-center h-[500px]">
+              <h1 className="text-xl">Nenhuma imagem encontrada.</h1>
+            </div>
+          )}
 
           {data.map((imagem: any) => (
             <div className="bg-soft-black w-full h-32 rounded-2xl flex items-center p-5 gap-5">

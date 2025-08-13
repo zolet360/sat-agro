@@ -11,6 +11,7 @@ import { formatarDataComTracos } from "@/utils/mask";
 import serviceAnalise from "@/services/analise";
 import { CheckIcon, XMarkIcon } from "@heroicons/react/16/solid";
 import { ArrowPathRoundedSquareIcon } from "@heroicons/react/24/outline";
+import Loading from "@/components/Loading";
 
 interface buscaImagemProps {
   user: any;
@@ -230,8 +231,7 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
       >
         {loading ? (
           <div className="flex flex-col gap-5 items-center justify-center">
-            <p className="text-white text-2xl">Salvando Imagem...</p>
-            <div className="loader"></div>
+            <Loading />
           </div>
         ) : (
           <Input className="w-full" id="titulo" value={formData.titulo} setFormData={setFormData} label="Título da Análise"></Input>
@@ -255,8 +255,9 @@ export default function BuscaImagem({ setHeaderTitle, user }: buscaImagemProps) 
                 Importar
               </Button>
             </div>
+            <span>O Sistema reconhece primeiro Latitude e depois Longitude. Na duvida, copie e cole diretamente do google maps</span>
             <div className="flex gap-5 w-full">
-              <Input className="w-full" id="coordenada1" value={formCoordenadas.coordenada1} setFormData={setFormCoordenadas} label="Coordenada 1"></Input>
+              <Input className="w-full" placeholder="Ex: -23.586945253991747, -46.68877650651415" id="coordenada1" value={formCoordenadas.coordenada1} setFormData={setFormCoordenadas} label="Coordenada 1"></Input>
             </div>
             <div className="flex gap-5 w-full">
               <Input className="w-full" id="coordenada2" value={formCoordenadas.coordenada2} setFormData={setFormCoordenadas} label="Coordenada 2"></Input>
